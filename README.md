@@ -1,3 +1,7 @@
+<div style="text-align: center; justify-content: center;">
+
+</div>
+
 <h1>
  Discord Bot
 </h1>
