@@ -1,5 +1,5 @@
 <div>
-    <img style="text-align: center; justify-content: center; border-radius: 50px;" alt="Logo" src="https://lh3.googleusercontent.com/ogw/ADea4I46KaLWKigwYYu3xGhYx5KVm0-Ezi7Q-fgplAKy0w=s32-c-mo"/>
+    <img style="padding-left: 100px; border-radius: 50px;" alt="Logo" src="https://lh3.googleusercontent.com/ogw/ADea4I46KaLWKigwYYu3xGhYx5KVm0-Ezi7Q-fgplAKy0w=s32-c-mo"/>
 </div>
 
 <h1>
