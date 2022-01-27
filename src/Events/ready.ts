@@ -4,10 +4,6 @@ import NewBot from "../Structures/Client";
 export default async function ready(client: NewBot) {
 
 
-    client.guildDatabase.find()
-
-    client.user?.setStatus('idle')
-
     client.user?.setActivity({
         name: `${client.users.cache.size} Usuários`,
         type: 'PLAYING'
