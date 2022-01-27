@@ -1,5 +1,6 @@
 <div>
-    <img style="text-align: center; justify-content: center; border-radius: 50px;" alt="Logo" src="https://lh3.googleusercontent.com/ogw/ADea4I46KaLWKigwYYu3xGhYx5KVm0-Ezi7Q-fgplAKy0w=s32-c-mo"/>
+    <img style="padding-left: 50px; justify-content: center; border-radius: 50px;" alt="Logo" src="https://lh3.googleusercontent.com/ogw/ADea4I46KaLWKigwYYu3xGhYx5KVm0-Ezi7Q-fgplAKy0w=s32-c-mo"/>
+    <span>GAARA041</span>
 </div>
 
 <h1>
