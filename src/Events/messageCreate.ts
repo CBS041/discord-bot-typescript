@@ -1,10 +1,13 @@
 import { Message, User } from "discord.js";
 import NewBot from "../Structures/Client";
 import { Logger } from "../Utils/Log";
+import moment from "moment";
 
 const GetMention = (id: any) => new RegExp(`^<@!?${id}>( |)$`);
 
 export default async function messageCreate(client: NewBot, message: Message) {
+  moment.locale("pt-BR");
+
   try {
     const guild = message.guild;
 
@@ -17,6 +20,10 @@ export default async function messageCreate(client: NewBot, message: Message) {
         idG: guild?.id,
       });
 
+    if (message.author.bot == true) return;
+
+    if (message.channel.type === "DM") return;
+
     const user = await client.usersDatabase.findOne({
       idU: message.author.id,
     });
@@ -25,24 +32,20 @@ export default async function messageCreate(client: NewBot, message: Message) {
       await client.usersDatabase.create({
         idU: message.author.id,
       });
-      
+
     let prefix = server?.prefix;
+
     if (message.content.indexOf(prefix) !== 0) return;
 
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
 
     const command = args.shift()?.toLowerCase() || "";
 
-    const cmd = client.commands.get(command);
-
-    if (message.content.match(GetMention(client.user?.id)))
-      return message.reply({
-        content: "Não me mencione",
-      });
+    var cmd = client.commands.get(command) || client.aliases.get(command);
 
     if (!cmd) return;
 
-    cmd.run(client, message, args, { prefix });
+    cmd?.run(client, message, args, { prefix });
   } catch (e) {
     Logger.LogError(e);
   }

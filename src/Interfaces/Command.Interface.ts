@@ -3,6 +3,12 @@ export interface Command {
     description: string,
     category: string,
     args?: string,
-    aliases: string[],
+    aliases?: Array<string> | string[],
+    run: Function
+}
+
+export interface Aliases {
+    name: string,
+    aliases?: Array<string> | string[],
     run: Function
 }

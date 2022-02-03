@@ -4,13 +4,16 @@ import {
   MessageActionRow,
   Interaction,
 } from "discord.js";
+import { Command } from "../../Interfaces/Command.Interface";
 import NewBot from "../../Structures/Client";
 import Embed from "../../Structures/Embed";
 
-export default {
+export default <Command> {
   name: "help",
   description: "Veja o painel de ajuda do bot",
   category: "Informações",
+
+  aliases: ["ajuda"],
 
   run: async (client: NewBot, message: Message, args: Array<String>) => {
     const { commands } = client;

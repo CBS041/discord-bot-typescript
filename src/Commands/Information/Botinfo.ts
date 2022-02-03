@@ -5,15 +5,18 @@ import {
 import moment from "moment";
 
 import "moment-duration-format";
+import { Command } from "../../Interfaces/Command.Interface";
 
 import NewBot from "../../Structures/Client";
 import Embed from "../../Structures/Embed";
 import CreateKey from "../../Utils/Key";
 
-export default {
+export default <Command> {
   name: "botinfo",
   description: "Veja as informações do bot",
   category: "Informações",
+
+  aliases: ["b-info", "binfo"],
 
   run: async (client: NewBot, message: Message, args: Array<String>) => {
     const users = client.users.cache.size;

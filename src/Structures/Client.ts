@@ -3,19 +3,20 @@ import { readdirSync, promises } from "fs";
 import GuildData from "../Database/Models/Guild";
 import UserData from "../Database/Models/User";
 import { join } from "path";
-import { Command } from "../Interfaces/Command.Interface";
+import { Aliases, Command } from "../Interfaces/Command.Interface";
 
 class NewBot extends Client {
   commands: Collection<string, Command> = new Collection();
+  aliases: Collection<string, Aliases> = new Collection();
   categories: Array<string> = readdirSync(join(__dirname, "../Commands"));
 
   extension: string = "ts";
 
   guildDatabase = GuildData;
 
-  usersDatabase = UserData
+  usersDatabase = UserData;
 
-  owners: string[] = ["123"];
+  owners: string[] = [process.env.OWNER_ID || "393490411932483592"];
 
   constructor(options: ClientOptions) {
     super(options);
@@ -57,6 +58,8 @@ class NewBot extends Client {
           throw new SyntaxError(
             "A command should have `data` property and a `execute` method"
           );
+
+        command.aliases?.forEach((x) => this.aliases.set(x., command));
 
         this.commands.set(command.name, command);
       }
