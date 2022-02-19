@@ -1,6 +1,10 @@
 <div>
+<<<<<<< HEAD
     <img style="padding-left: 50px; justify-content: center; border-radius: 50px;" alt="Logo" src="https://lh3.googleusercontent.com/ogw/ADea4I46KaLWKigwYYu3xGhYx5KVm0-Ezi7Q-fgplAKy0w=s32-c-mo"/>
     <span>GAARA041</span>
+=======
+    <img style="padding-left: 100px; border-radius: 50px;" alt="Logo" src="https://lh3.googleusercontent.com/ogw/ADea4I46KaLWKigwYYu3xGhYx5KVm0-Ezi7Q-fgplAKy0w=s32-c-mo"/>
+>>>>>>> 5fa03ef3fedee7e889ed104b1b0e89acdfab653a
 </div>
 
 <h1>
