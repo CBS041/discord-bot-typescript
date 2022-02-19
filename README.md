@@ -1,10 +1,3 @@
-<div>
-
-    <img style="padding-left: 50px; justify-content: center; border-radius: 50px;" alt="Logo" src="https://lh3.googleusercontent.com/ogw/ADea4I46KaLWKigwYYu3xGhYx5KVm0-Ezi7Q-fgplAKy0w=s32-c-mo"/>
-    <span>GAARA041</span>
-
-</div>
-
 <h1>
  Discord Bot
 </h1>
@@ -17,4 +10,8 @@
         Discord Bot feito em typescript com conexão com banco de dados <p style="text-color: red">Mongoose</p>
 </span>
 
+</div>
+
+<div>
+  <img src="https://lh3.googleusercontent.com/ogw/ADea4I46KaLWKigwYYu3xGhYx5KVm0-Ezi7Q-fgplAKy0w=s32-c-mo" alt="Logo" style="text-align: center; justify-content: center;">
 </div>
