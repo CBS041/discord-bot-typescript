@@ -5,8 +5,7 @@ import {
 
 const GuildSchema = new Schema({
     idG: { type: String, required: true },
-    prefix: { type: String, default: process.env.PREFIX },
-    logs: { type: String }
+    prefix: { type: String, default: process.env.PREFIX }
 });
 
 export = model('guilds', GuildSchema);

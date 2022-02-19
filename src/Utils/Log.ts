@@ -1,18 +1,33 @@
-import { red, blue, green, white } from "colors";
+import { red, blue, green, white, yellow } from 'colors'
 
-class Logger {
-    static LogError(text: any) {
-        return console.log(red(text));
-    }
+const LogError = (text: any) => {
+  if (!text) return ''
+
+  return console.log(red(text))
 }
 
 const LogSucess = (text: any) => {
-    if (!text) return "";
+  if (!text) return ''
 
-    return console.log(blue(text));
+  return console.log(green(text))
 }
 
-export {
-    Logger,
-    LogSucess
+const LogInfo = (text: any) => {
+  if (!text) return ''
+
+  return console.log(blue(text))
 }
+
+const LogWarn = (text: any) => {
+  if (!text) return ''
+
+  return console.log(yellow(text))
+}
+
+const LogAny = (text: any) => {
+  if (!text) return ''
+
+  return console.log(white(text))
+}
+
+export { LogError, LogSucess, LogInfo, LogWarn, LogAny }

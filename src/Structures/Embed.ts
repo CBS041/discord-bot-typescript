@@ -1,17 +1,16 @@
-import { MessageEmbed, User } from "discord.js";
+import { MessageEmbed } from 'discord.js'
 
 class Embed extends MessageEmbed {
-  constructor(user: User, data = {}) {
-    super(data);
+  constructor(description?: string, data = {}) {
+    super(data)
 
-    this.setColor("RANDOM");
-    this.setTimestamp(new Date());
-    if (user)
-      this.setFooter(
-        `${user.tag}`,
-        `${user.avatarURL({ dynamic: true, size: 4096 })}`
-      );
+    if (description) {
+      this.setDescription(description)
+    }
+
+    this.setColor('#ed4245')
+    this.setTimestamp(new Date())
   }
 }
 
-export default Embed;
+export default Embed

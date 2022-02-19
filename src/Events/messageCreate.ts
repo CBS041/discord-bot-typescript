@@ -1,52 +1,60 @@
-import { Message, User } from "discord.js";
-import NewBot from "../Structures/Client";
-import { Logger } from "../Utils/Log";
-import moment from "moment";
+import { Message, User } from 'discord.js'
+import NewBot from '../Structures/Client'
+import { LogError } from '../Utils/Log'
+import moment from 'moment'
 
-const GetMention = (id: any) => new RegExp(`^<@!?${id}>( |)$`);
+const GetMention = (id: any) => new RegExp(`^<@!?${id}>( |)$`)
 
 export default async function messageCreate(client: NewBot, message: Message) {
-  moment.locale("pt-BR");
+  moment.locale('pt-BR')
 
   try {
-    const guild = message.guild;
+    const guild = message.guild
 
     const server = await client.guildDatabase.findOne({
-      idG: guild?.id,
-    });
+      idG: guild?.id
+    })
 
     if (!server)
       await client.guildDatabase.create({
-        idG: guild?.id,
-      });
+        idG: guild?.id
+      })
 
-    if (message.author.bot == true) return;
+    if (message.author.bot == true) return
 
-    if (message.channel.type === "DM") return;
+    if (message.channel.type === 'DM') return
 
     const user = await client.usersDatabase.findOne({
-      idU: message.author.id,
-    });
+      idU: message.author.id
+    })
 
     if (!user)
       await client.usersDatabase.create({
-        idU: message.author.id,
-      });
+        idU: message.author.id
+      })
 
-    let prefix = server?.prefix;
+    let prefix = server?.prefix
 
-    if (message.content.indexOf(prefix) !== 0) return;
+    if (message.content.match(GetMention(client.user?.id))) {
+      return message.reply(
+        `Meu Prefixo neste servidor é: \`${prefix}\`\n\n Para saber meus comandos digite \`${prefix}help/ajuda\``
+      )
+    }
 
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    if (message.content.indexOf(prefix) !== 0) return
 
-    const command = args.shift()?.toLowerCase() || "";
+    const args = message.content.slice(prefix.length).trim().split(/ +/g)
 
-    var cmd = client.commands.get(command) || client.aliases.get(command);
+    const command = args.shift()?.toLowerCase() || ''
 
-    if (!cmd) return;
+    var cmd =
+      client.commands.get(command) ||
+      client.commands.get(client.aliases.get(command))
 
-    cmd?.run(client, message, args, { prefix });
+    if (!cmd) return
+
+    cmd?.run(client, message, args)
   } catch (e) {
-    Logger.LogError(e);
+    LogError(e)
   }
 }

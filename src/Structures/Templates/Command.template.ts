@@ -1,10 +1,12 @@
-import { Message } from "discord.js";
-import NewBot from "../../Structures/Client";
+import { Message } from 'discord.js'
+import NewBot from '../../Structures/Client'
+import Command from '../Interfaces/Command.Interface'
 
-export default {
-  name: "command-name",
-  description: "command-description",
-  category: "command-category",
+export default <Command>{
+  name: 'command-name',
+  description: 'command-description',
+  category: 'command-category',
+  aliases: ['command-aliase'],
 
-  run: async (client: NewBot, message: Message, args: Array<String>) => {},
-};
+  run: async (client: NewBot, message: Message, args: Array<String>) => {}
+}
