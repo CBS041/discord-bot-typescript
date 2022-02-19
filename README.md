@@ -13,7 +13,5 @@
 </div>
 
 <div>
-  <img src="https://lh3.googleusercontent.com/ogw/ADea4I46KaLWKigwYYu3xGhYx5KVm0-Ezi7Q-fgplAKy0w=s32-c-mo" alt="Logo" style="text-align: center; justify-content: center;" />
-
-  <span style="justify-content: center; margin-left: 40%;">GAARA041</span>
+  <img src="https://lh3.googleusercontent.com/ogw/ADea4I46KaLWKigwYYu3xGhYx5KVm0-Ezi7Q-fgplAKy0w=s32-c-mo" alt="Logo" style="text-align: center; justify-content: center;" title="GAARA041" />
 </div>
