@@ -19,19 +19,23 @@ export default <Command>{
     const { commands } = client
 
     let author = message.author
+    
+    const EMBED = new Embed()
 
     const categoria1 = commands
       .map(x => x.category)
       .filter((x, f, y) => y.indexOf(x) === f)
 
     categoria1.forEach(async category => {
-      console.log(
-        commands
+        const comandos = commands
           .filter(x => x.category === category)
           .sort((a, b) => a.name.localeCompare(b.name))
           .map(f => `${f.name}`)
           .join('\n')
-      )
+      
+        EMBED.addField(category, comandos, false)
     })
+    
+    return message.reply({ embeds: [EMBED] )
   }
 }
