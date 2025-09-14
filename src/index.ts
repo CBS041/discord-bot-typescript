@@ -1,12 +1,24 @@
-import 'dotenv/config'
-import NewBot from './Structures/Client'
-import { start } from './Database/Data'
+import 'dotenv/config';
 
-start(process.env.DATABASE_URL)
+import { connectDatabase } from './database/connection';
+import { ExtendedClient } from './structures/client';
 
-const client = new NewBot({
-  intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'],
-  restTimeOffset: 0
-})
+async function main() {
+  try {
+    // Connect to database
+    await connectDatabase(process.env.DATABASE_URL);
 
-client.login(process.env.TOKEN)
+    // Initialize client with modern intents
+    const client = new ExtendedClient({
+      intents: ['Guilds', 'GuildMessages', 'GuildMembers', 'MessageContent'],
+    });
+
+    // Login to Discord
+    await client.login(process.env.TOKEN);
+  } catch (error) {
+    console.error('Failed to start bot:', error);
+    process.exit(1);
+  }
+}
+
+main();
