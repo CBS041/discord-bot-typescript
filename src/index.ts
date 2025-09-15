@@ -1,12 +1,42 @@
-import 'dotenv/config'
-import NewBot from './Structures/Client'
-import { start } from './Database/Data'
+import 'dotenv/config';
 
-start(process.env.DATABASE_URL)
+import { connectDatabase } from './database/connection';
+import { ExtendedClient } from './structures/client';
+import { validateEnvironment } from './utils/environment';
+import { logger } from './utils/logger';
 
-const client = new NewBot({
-  intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'],
-  restTimeOffset: 0
-})
+async function main() {
+  try {
+    // Validate environment variables
+    const env = validateEnvironment();
 
-client.login(process.env.TOKEN)
+    // Connect to database
+    await connectDatabase(env.DATABASE_URL);
+
+    // Initialize client with modern intents
+    const client = new ExtendedClient({
+      intents: ['Guilds', 'GuildMessages', 'GuildMembers', 'MessageContent'],
+    });
+
+    // Handle graceful shutdown
+    process.on('SIGINT', async () => {
+      logger.info('Received SIGINT, shutting down gracefully...');
+      client.destroy();
+      process.exit(0);
+    });
+
+    process.on('SIGTERM', async () => {
+      logger.info('Received SIGTERM, shutting down gracefully...');
+      client.destroy();
+      process.exit(0);
+    });
+
+    // Login to Discord
+    await client.login(env.TOKEN);
+  } catch (error) {
+    logger.error('Failed to start bot:', error);
+    process.exit(1);
+  }
+}
+
+main();
